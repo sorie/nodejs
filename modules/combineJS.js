@@ -2,22 +2,29 @@
 
 // File System 내장 모듈 호출
 var fs = require('fs');
+		minify = require('minify');
 /**
 	* combine.JS 모듈 정의 및 외부로 출력
 	* 모듈 내부에 전달받을 인자(배열, 문자열) 설정\
 	*/
 
-module.exports = function (jsSrc, exportJS) {
+module.exports = function (jsSrc, exportJs) {
 	var mergeCode = '';
 	//배열 jsSrc를 개별적으로 접근 조작하기 위해
 	//forEach 배열 메소드 사용.
 	jsSrc.forEach(function(file, index) {
 		//fs.readFileSync() 사용하여 파일 내용 읽기.
-		mergeCode += fs.readFileSync(file);
+		minify(file, function(err, data) {
+			mergeCode += data;
+			if(index==jsSrc.length-1){writeFile();}
+		});
 	});
 	//console.log(mergeCode);	
 	//병합된 코드 mergeCode 내용을 파일 생성. 
-	fs.writeFileSync(exportJS, mergeCode);
+	//fs.writeFileSync(exportJS, mergeCode);
+	function writeFile() {
+		fs.writeFileSync(exportJs, mergeCode);
+	}
 }
 
 /**
