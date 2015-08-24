@@ -1,0 +1,22 @@
+{
+  "name": "combinejs",
+  "version": "0.0.1",
+  "description": "combinejs 모듈은 javascript 파일을 병합합니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "combine",
+    "merge",
+    "js",
+    "javascript",
+    "minigy",
+    "compress"
+  ],
+  "author": "sorie",
+  "license": "ISC",
+  "devDependencies": {
+    "minify": "^1.4.19"
+  }
+}
